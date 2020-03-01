@@ -7,6 +7,30 @@ import java.util.Scanner;
 
 public class Solution {
 
+    private static int birthdayCakeCandles(int[] ar) {
+        // Find the highest value
+        int highestValue = 0;
+        for (int i = 0; i < ar.length - 1; i++) {
+            if (ar[i] > ar[i + 1]) {
+                if (highestValue < ar[i])
+                    highestValue = ar[i];
+            } else {
+                if (highestValue < ar[i + 1]) {
+                    highestValue = ar[i + 1];
+                }
+            }
+        }
+
+        // Determine the amount of highest value
+        int amount = 0;
+        for (int value : ar) {
+            if (highestValue == value)
+                amount++;
+        }
+
+        return amount;
+    }
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
@@ -24,5 +48,14 @@ public class Solution {
             int arItem = Integer.parseInt(arItems[i]);
             ar[i] = arItem;
         }
+
+        int result = birthdayCakeCandles(ar);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
     }
 }
